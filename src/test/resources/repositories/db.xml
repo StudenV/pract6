@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DbGears xmlns="http://chameleon.ibs-qa.ru/schema/db">
+    <Connection name="H2" driver="org.h2.Driver"
+                url="jdbc:h2:tcp://localhost:9092/mem:testdb;DB_CLOSE_DELAY=-1;user=#{user};password=#{pass}"
+                autoCommit="true">
+        <Params>
+            <FieldString name="Логин" locator="user"/>
+            <FieldString name="Пароль" locator="pass"/>
+        </Params>
+    </Connection>
+    <Query name="Вставка  данных"
+           statement="INSERT INTO food(food_id, food_name, food_type, food_exotic) values(:food_id, :food_name, :food_type, :food_exotic)">
+        <Params>
+            <FieldInteger name="ID" locator="food_id"/>
+            <FieldString name="Наименование" locator="food_name"/>
+            <FieldString name="Тип" locator="food_type"/>
+            <FieldNumber name="чекбокс Экзотичность" locator="food_exotic"/>
+        </Params>
+    </Query>
+    <Query name="Удаления данных" statement="DELETE FROM food WHERE FOOD_ID = 5">
+        <Result>
+            <FieldInteger name="ID" locator="food_id"/>
+            <FieldString name="Наименование" locator="food_name"/>
+            <FieldString name="Тип" locator="food_type"/>
+            <FieldNumber name="чекбокс Экзотичность" locator="food_exotic"/>
+        </Result>
+    </Query>
+    <Query name="Получение данных" statement="SELECT * FROM FOOD"/>
+</DbGears>
